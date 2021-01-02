@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
@@ -10,21 +11,27 @@ import javax.swing.JPanel;
 
 public class GUI implements ActionListener{
 	
+	private int count=0;
+	private JLabel label;
+	private JFrame frame;
+	private JButton button;
+	private JPanel panel;
+	
 	public GUI() {
 		
-		//create jframe object
-		JFrame frame = new JFrame();
+		//assigns jframe instance
+		frame = new JFrame();
 		
-		//creates button object
-		JButton button = new JButton("Click me");
+		//assigns jbutton instance
+		button = new JButton("Click me");
 		button.addActionListener(this); // implement the actionlistener interface to use this
 		
-		//creates label object
-		JLabel label = new JLabel("Number of clicks:0");
+		//assigns jlabel instance
+		label = new JLabel("Number of clicks: 0");
 		
-		//create jpanel object
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+		//assigns jpanel instance
+		panel = new JPanel();
+		panel.setBorder(BorderFactory.createEmptyBorder(30, 40, 10, 30));
 		panel.setLayout(new GridLayout(0, 1));
 		panel.add(button); //import button object
 		panel.add(label); //import label object
@@ -37,7 +44,14 @@ public class GUI implements ActionListener{
 		frame.setVisible(true); //make window visible and in focus
 	}
 	
+	//Main method
 	public static void main(String[] args) {
 		new GUI(); //construtor
+	}
+
+	@Override //set the action performed when button is clicked
+	public void actionPerformed(ActionEvent arg0) {
+		count++;
+		label.setText("Number of clicks: " + count);
 	}
 }
